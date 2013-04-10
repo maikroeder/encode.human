@@ -1,6 +1,7 @@
-<table tal:define="colours python:dimension[colour]['unique_values'];
-                   columns python:dimension[column]['unique_values'];
-                   right_rows python:dimension[right_row]['unique_values']">
+<table tal:define="colours python:sorted(list(frame[dimension[colour]['id']].unique()));
+                   columns python:sorted(list(frame[dimension[column]['id']].unique()));
+                   right_rows python:sorted(list(frame[dimension[right_row]['id']].unique()));
+                   grouped python:frame.groupby(dimensions)">
 
     <tr style="text-align: center; cursor: pointer;"
         class="rowA">

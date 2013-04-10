@@ -1,10 +1,10 @@
 <div id="primaryContentContainer">
 	<div id="primaryContent">
     	<div class="box"
-             tal:repeat="value python:dimension[heading]['unique_values']">
+             tal:repeat="value python:sorted(list(frame[dimension[heading]['id']].unique()))">
 			<h2 tal:content="python:value"></h2>
 			<div class="boxContent">
-    			<tal:block content="structure python:slot('tables')" />
+    			<tal:block content="structure python:slot('tables', grouped.get_group(value))" />
 			</div>
 		</div>
 	</div>

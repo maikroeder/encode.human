@@ -9,7 +9,7 @@
 			 class="boxContent">
 		    <img style="float:right;" src="images/help.png" />
 			<table width="100%">
-				<tr tal:repeat="value python:axis['unique_values']">
+				<tr tal:repeat="value python:sorted(list(frame[axis['id']].unique()))">
 	         		<td >           
                         <div tal:define="bgcolor python:'#%s' % axis['colour_mapping'][value]"
                              tal:attributes="style python:'background-color:' + bgcolor + chr(59);">
