@@ -34,3 +34,10 @@ tissueSourceType
 treatment
 type
 view
+donorId
+protocol
+dateProcessed
+organism
+fileLab
+origAssembly
+submittedDataVersion

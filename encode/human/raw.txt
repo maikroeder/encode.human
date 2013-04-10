@@ -7,3 +7,13 @@ gff
 bai
 bigWig
 spikeins
+broadPeak
+CEL
+csqual
+csfasta
+bedCluster
+pdf
+shortFrags
+bigBed
+md5sum
+soft
