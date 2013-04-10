@@ -1,0 +1,9 @@
+fastq
+bam
+bed
+bedRnaElements
+gtf
+gff
+bai
+bigWig
+spikeins

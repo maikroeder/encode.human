@@ -1,0 +1,11 @@
+cell
+strain
+age
+sex
+localization
+lab
+dataType
+grant
+labExpId
+readType
+replicate
