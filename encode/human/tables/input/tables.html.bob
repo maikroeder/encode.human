@@ -127,8 +127,8 @@
                 <table>
                     <tr>
                         <th colspan="9" style="text-align: center;">
-                            <tal:block content="python:u', '.join([item for item in left_row])" />, 
-                            <tal:block content="colour" />, 
+                            <tal:block content="left_row_value" />, 
+                            <tal:block content="colour_value" />, 
                             <tal:block content="right_row" />, 
                             <tal:block content="column" />
                         </th>
