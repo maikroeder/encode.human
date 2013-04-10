@@ -1,0 +1,10 @@
+<ul>
+    <li tal:repeat="file_info python:frame.iterrows()">
+        <a tal:attributes="href python:file_info[1]['fileurl']"
+           tal:content="structure python:file_info[1]['fileview']">
+        </a>
+        <br />
+        <span tal:condition="python:file_info[1]['dateunrestricted']"
+              style="font-size:8px;"> Unrestricted&nbsp;date:&nbsp;<tal:block content="structure python:file_info[1]['dateunrestricted']"></tal:block></span>
+    </li>
+</ul>

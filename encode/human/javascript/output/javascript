@@ -1,0 +1,24 @@
+<script type="text/javascript" src="jquery.tools.min.js"></script>	
+
+<script type="text/javascript">
+function expandCollapse(id){
+	if(document.getElementById(id).className == 'hide'){
+		document.getElementById(id).className='show';
+		}
+	else{
+		document.getElementById(id).className='hide';
+		}
+	}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#about_dimension_0[rel]").overlay();
+    $("#about_dimension_1[rel]").overlay();
+    $("#about_dimension_2[rel]").overlay();
+    $("#about_dimension_3[rel]").overlay();
+    $("#about_dimension_4[rel]").overlay();
+    $("#about_dimension_5[rel]").overlay();
+    $("#about_dimension_6[rel]").overlay();
+});
+</script>

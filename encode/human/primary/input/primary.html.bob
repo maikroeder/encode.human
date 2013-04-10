@@ -1,0 +1,12 @@
+<div id="primaryContentContainer">
+	<div id="primaryContent">
+    	<div class="box"
+             tal:repeat="value python:dimension[heading]['unique_values']">
+			<h2 tal:content="python:value"></h2>
+			<div class="boxContent">
+    			<tal:block content="structure python:slot('tables')" />
+			</div>
+		</div>
+	</div>
+</div>
+

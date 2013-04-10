@@ -1,0 +1,188 @@
+<table tal:define="colours python:dimension[colour]['unique_values'];
+                   columns python:dimension[column]['unique_values'];
+                   right_rows python:dimension[right_row]['unique_values']">
+
+    <tr style="text-align: center; cursor: pointer;"
+        class="rowA">
+        <th>
+            <tal:block tal:repeat="dim python:left_row_left">
+                <span tal:define="axis python:dimension[dim]"
+                      tal:attributes="id python:'about_dimension_%s' % axis['number'];
+                                      rel python:'#more_about_dimension_%s' % axis['number'];"
+                      style="background-color:#e5e5e5;">
+                    <tal:block content="python:axis['title']" /><img src="images/help.png" />
+                </span>
+            </tal:block>
+            <span style="display: block; text-align: right; font-weight: normal; color: #999;">
+            <tal:block tal:repeat="dim python:left_row_right">
+                <span tal:define="axis python:dimension[dim]"
+                      tal:attributes="id python:'about_dimension_%s' % axis['number'];
+                                      rel python:'#more_about_dimension_%s' % axis['number'];">
+                    <tal:block content="python:axis['title']" /><img src="images/help.png" />
+                </span>
+            </tal:block>
+            </span>            
+        </th>
+        <th style="background-color:#fff;"></th>
+        <th tal:define="axis python:dimension[column]"
+            tal:attributes="id python:'about_dimension_%s' % axis['number'];
+                            rel python:'#more_about_dimension_%s' % axis['number'];
+                            colspan python:(len(colours)+1) * len(columns) - 1"
+            class="help"
+            style="text-align: center; cursor: pointer;background-color:#e5e5e5;"
+            class="rowA">
+		    <img style="float:right;" src="images/help.png" />
+		    <tal:block content="python:axis['title']" />
+       </th>
+        <th style="background-color:#fff;">
+        </th>
+        <th tal:define="axis python:dimension[right_row]"
+            tal:attributes="id python:'about_dimension_%s' % axis['number'];
+                            rel python:'#more_about_dimension_%s' % axis['number'];"
+            style="cursor: pointer; background-color:#e5e5e5;">
+		    <img style="float:right;" src="images/help.png" />
+            <tal:block content="python:axis['title']" />
+        </th>
+    </tr>
+
+    <tr style="line-height: 5px; ">
+        <td style="text-align: center;">
+           <img src="images/pointer.gif" style="position:relative; top:-5px;" />
+        </td>
+        <td>
+        </td>
+        <td tal:attributes="colspan python:(len(colours)+1) * len(columns) -1"
+            style="text-align: center;">
+           <img style="position:relative; top:-5px;"
+                src="images/pointer.gif" />
+        </td>
+        <td>
+        </td>
+        <td style="text-align: center;">
+           <img style="position:relative; top:-5px;"
+                src="images/pointer.gif" />
+        </td>
+    </tr>
+
+    <tr>
+        <th></th>
+        <th></th>
+        <tal:block tal:repeat="column columns">
+            <th tal:attributes="colspan python:len(colours)">
+                <div style="background-color: #EFEFEF;"
+                     tal:attributes="title python:column">
+                    <tal:block tal:content="column"></tal:block>
+                </div>
+            </th>
+            <th></th>        
+        </tal:block>
+        <th></th>
+    </tr>
+
+    <tal:block tal:repeat="left_row python:left_rows">
+        <tr>
+            <td tal:attributes="colspan python:(len(colours)+1) * len(columns) + 3">&nbsp;</td>    
+        </tr>
+    
+        <tal:block repeat="right_row python:right_rows">
+        <tr tal:define="odd repeat/right_row/odd"
+            tal:attributes="class python:'rowA'">
+            <th valign="top"
+                tal:attributes="rowspan python:len(right_rows)"
+                tal:condition="repeat/right_row/start">
+
+
+            <tal:block tal:repeat="index python:range(len(left_row_left))">
+                <tal:block tal:content="python:left_row[index]">
+                </tal:block>                
+            </tal:block>
+
+<span style="display: block; text-align: right; font-weight: normal; color: #999;">
+
+            <tal:block tal:repeat="dim python:left_row_right">
+
+             <tal:block tal:define="axis python:dimension[dim]"
+                        content="python:axis['title']">
+             </tal:block>:
+
+             <span tal:content="python:left_row[len(left_row_left) + repeat['dim'].index()]" />
+
+            </tal:block>
+</span>
+
+
+
+
+
+            </th>
+            <td width="18" height="18" valign="top" style="background-color:#fff;">
+            </td>
+            <tal:block repeat="column python:columns">
+                <tal:block repeat="colour_value python:colours">
+                    <td width="18"
+                        height="18"
+                        valign="top"
+                        tal:define="cell_key python:tuple([item for item in left_row] + [right_row, column, colour_value]);
+                                    cell_value python:grouped[cell_key];
+                                    cell_index python:str(counter.next())">
+
+
+                        <div tal:condition="python:cell_key in grouped.groups"
+                             tal:attributes="style python:cell_value.any and 'background-color:#%s' % dimension[colour]['colour_mapping'][colour_value] or ''">
+                             <a style="text-decoration: none; display:block; color: white; text-align: center; font-weight: bolder;" 
+                                tal:define="number python:measure(grouped.get_group(cell_key)['labExpId'].sum())"
+                                tal:attributes="title python:', '.join(cell_key) + ': %s experiments' % number;
+                                href python:cell_key in grouped.groups and 'javascript:expandCollapse(' + chr(39) + 'div%s' % cell_index + chr(39) + ')' + chr(59) or None; "
+                                tal:content="python:number">!
+                             </a>
+                        </div>
+
+
+                            <div class="hide"
+                                 tal:attributes="id python:'div%s' % cell_index;
+                                                 style python:cell_value.any and 'background-color:#%s' % dimension[colour]['colour_mapping'][colour_value] or ''"
+                                 tal:condition="python:cell_key in grouped.groups">
+                                <div tal:condition="python:cell_key in grouped.groups">
+
+
+                                    
+
+<div tal:attributes="style python:'background-color:#%s' % dimension[colour]['colour_mapping'][colour_value] or '';
+                     id python:'analysis-'+ cell_index">
+    <div style="padding:1em;">
+        <div class="box">
+            <div class="boxContent">
+                <table>
+                    <tr>
+                        <th colspan="9" style="text-align: center;">
+                            <tal:block content="python:u', '.join([item for item in left_row])" />, 
+                            <tal:block content="colour" />, 
+                            <tal:block content="right_row" />, 
+                            <tal:block content="column" />
+                        </th>
+                    </tr>                    
+                </table>                
+            <div tal:content="structure python:slot('subtable', grouped.get_group(cell_key))">
+
+
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+
+                                </div>
+                            </div>
+
+                    </td>
+                </tal:block>
+                <td width="18" height="18" valign="top" style="background-color:#fff;"></td>
+            </tal:block>
+            <th width="120"
+                valign="top">
+                <tal:block tal:content="right_row"></tal:block>
+            </th>
+        </tr>
+        </tal:block>
+    </tal:block>
+</table>

@@ -1,0 +1,48 @@
+<table width="100%">
+<tbody>
+
+<tr class="rowA" style="display: table-row;">
+    <th style="text-align: center;"
+        tal:attributes="colspan python:len(index)">
+        <h3>Experiment</h3>
+    </th>
+    <th style="background-color: #ffffff;">
+    </th>
+    <th tal:attributes="colspan python:len(column_headers)"
+        style="text-align: center;">
+        <h3>Data files</h3>
+    </th>
+</tr>
+
+<tr>
+    <th tal:repeat="header python:index"
+        tal:content="header">
+    </th>
+    <th  style="background-color: #ffffff;">
+    &nbsp;
+    </th>
+    <th tal:repeat="header python:column_headers"
+        tal:content="header"></th>    
+</tr>
+
+<tal:block tal:repeat="index_frame python:[i for i in frame.groupby(index)]">
+    <tr tal:define="index python:index_frame[0];
+                    frame python:index_frame[1];"
+        tal:attributes="class python:repeat['index_frame'].odd() and 'rowB' or 'rowA'">
+        <tal:block tal:repeat="item python:index">
+            <td tal:content="python:item">
+            </td>
+        </tal:block>
+        <td  style="background-color: #ffffff;">
+        &nbsp;
+        </td>
+        <tal:block tal:repeat="column_header python:column_headers">
+            <td valign="top"
+                tal:content="structure python:slot('cell', frame[frame[column] == column_header])">
+            </td>
+        </tal:block>
+    </tr>
+</tal:block>
+
+</tbody>
+</table>

@@ -1,0 +1,15 @@
+<script type="text/javascript" src="jquery.tools.min.js"></script>	
+
+<script type="text/javascript">
+function expandCollapse(id){
+	if(document.getElementById(id).className == 'hide'){
+		document.getElementById(id).className='show';
+		}
+	else{
+		document.getElementById(id).className='hide';
+		}
+	}
+</script>
+
+<script type="text/javascript" tal:content="structure overlay_javascript">
+</script>

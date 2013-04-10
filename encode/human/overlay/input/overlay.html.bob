@@ -1,0 +1,12 @@
+<tal:block repeat="dim python:dimension.values()">
+<div class="simple_overlay"
+	 tal:attributes="id python:'more_about_dimension_%s' % dim['number']">
+	<h1 tal:content="python:dim['title']"></h1>
+
+    The UCSC has further information:
+    <div>
+	    <a tal:attributes="href python:dim['url']"
+	       tal:content="python:dim['title']"></a>
+    </div>
+</div>
+</tal:block>

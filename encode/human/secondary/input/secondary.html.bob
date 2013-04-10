@@ -1,0 +1,25 @@
+<div id="secondaryContent" 
+     class="floating-menu" 
+     style="cursor: pointer;"
+     tal:define="axis python:dimension[colour]"
+     tal:attributes="title python:'Click to learn more about %s' % axis['title']">
+	<div class="box">
+		<div tal:attributes="id python:'about_dimension_%s' % axis['number'];
+			                 rel python:'#more_about_dimension_%s' % axis['number']"
+			 class="boxContent">
+		    <img style="float:right;" src="images/help.png" />
+			<table width="100%">
+				<tr tal:repeat="value python:axis['unique_values']">
+	         		<td >           
+                        <div tal:define="bgcolor python:'#%s' % axis['colour_mapping'][value]"
+                             tal:attributes="style python:'background-color:' + bgcolor + chr(59);">
+								    <strong tal:attributes="style python:'color:#fff' + chr(59)" 
+								            tal:content="value">
+								</strong>
+                        </div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
