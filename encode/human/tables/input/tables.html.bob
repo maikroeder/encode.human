@@ -1,28 +1,18 @@
 <table tal:define="colours python:sorted(list(frame[dimension[colour]['id']].unique()));
                    columns python:sorted(list(frame[dimension[column]['id']].unique()));
                    right_rows python:sorted(list(frame[dimension[right_row]['id']].unique()));
+                   left_rows python:sorted(list(frame[dimension[left_row]['id']].unique()));
                    grouped python:frame.groupby(dimensions)">
 
     <tr style="text-align: center; cursor: pointer;"
         class="rowA">
         <th>
-            <tal:block tal:repeat="dim python:left_row_left">
-                <span tal:define="axis python:dimension[dim]"
-                      tal:attributes="id python:'about_dimension_%s' % axis['number'];
-                                      rel python:'#more_about_dimension_%s' % axis['number'];"
-                      style="background-color:#e5e5e5;">
-                    <tal:block content="python:axis['title']" /><img src="images/help.png" />
-                </span>
-            </tal:block>
-            <span style="display: block; text-align: right; font-weight: normal; color: #999;">
-            <tal:block tal:repeat="dim python:left_row_right">
-                <span tal:define="axis python:dimension[dim]"
-                      tal:attributes="id python:'about_dimension_%s' % axis['number'];
-                                      rel python:'#more_about_dimension_%s' % axis['number'];">
-                    <tal:block content="python:axis['title']" /><img src="images/help.png" />
-                </span>
-            </tal:block>
-            </span>            
+            <span tal:define="axis python:dimension[left_row]"
+                  tal:attributes="id python:'about_dimension_%s' % axis['number'];
+                                  rel python:'#more_about_dimension_%s' % axis['number'];"
+                  style="background-color:#e5e5e5;">
+                <tal:block content="python:axis['title']" /><img src="images/help.png" />
+            </span>
         </th>
         <th style="background-color:#fff;"></th>
         <th tal:define="axis python:dimension[column]"
@@ -80,7 +70,7 @@
         <th></th>
     </tr>
 
-    <tal:block tal:repeat="left_row python:left_rows">
+    <tal:block tal:repeat="left_row_value python:left_rows">
         <tr>
             <td tal:attributes="colspan python:(len(colours)+1) * len(columns) + 3">&nbsp;</td>    
         </tr>
@@ -93,27 +83,8 @@
                 tal:condition="repeat/right_row/start">
 
 
-            <tal:block tal:repeat="index python:range(len(left_row_left))">
-                <tal:block tal:content="python:left_row[index]">
+                <tal:block tal:content="python:left_row_value">
                 </tal:block>                
-            </tal:block>
-
-<span style="display: block; text-align: right; font-weight: normal; color: #999;">
-
-            <tal:block tal:repeat="dim python:left_row_right">
-
-             <tal:block tal:define="axis python:dimension[dim]"
-                        content="python:axis['title']">
-             </tal:block>:
-
-             <span tal:content="python:left_row[len(left_row_left) + repeat['dim'].index()]" />
-
-            </tal:block>
-</span>
-
-
-
-
 
             </th>
             <td width="18" height="18" valign="top" style="background-color:#fff;">
@@ -123,7 +94,7 @@
                     <td width="18"
                         height="18"
                         valign="top"
-                        tal:define="cell_key python:tuple([item for item in left_row] + [right_row, column, colour_value]);
+                        tal:define="cell_key python:tuple([left_row_value, right_row, column, colour_value]);
                                     cell_value python:grouped[cell_key];
                                     cell_index python:str(counter.next())">
 

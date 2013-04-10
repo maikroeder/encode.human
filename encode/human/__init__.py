@@ -29,10 +29,7 @@ def level_2(self):
     self.variables['measure'] = lambda x:len(set(x))
     self.variables['colours'] = self.variables['colours'].split()
     self.variables['dimensions'] = self.variables['dimensions'].split()
-    self.variables['left_row_left'] = self.variables['left_row_left'].split()
-    self.variables['left_row_right'] = self.variables['left_row_right'].split()
-    self.variables['left_row'] = self.variables['left_row_left'] + self.variables['left_row_right'] 
-    self.variables['left_rows'] = list(self.variables['frame'].groupby(self.variables['left_row']).ix.keys())
+    self.variables['left_row'] = self.variables['left_row']
     url_template = self.variables['url_template']
     number = 0
     for dimension_id in self.variables['dimensions']:
