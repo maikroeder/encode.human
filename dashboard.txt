@@ -1,10 +1,10 @@
 ./bin/mrbob -v -c encode/human/page/page.ini -O encode/human/page/output encode/human/page/input
 ./bin/mrbob -v -c encode/human/header/header.ini -O encode/human/header/output encode/human/header/input
 ./bin/mrbob -v -c encode/human/footer/footer.ini -O encode/human/footer/output encode/human/footer/input
-./bin/mrbob -v -c encode/human/level_1.ini -O encode/human/overlay/output encode/human/overlay/input
-./bin/mrbob -v -c encode/human/level_1.ini  -O encode/human/javascript/output encode/human/javascript/input
+./bin/mrbob -v -c encode/human/level_2.ini -O encode/human/overlay/output encode/human/overlay/input
+./bin/mrbob -v -c encode/human/level_2.ini  -O encode/human/javascript/output encode/human/javascript/input
 ./bin/mrbob -v -c encode/human/primary/primary.ini -O encode/human/primary/output encode/human/primary/input
-./bin/mrbob -v -c encode/human/level_1.ini -O encode/human/secondary/output encode/human/secondary/input
-./bin/mrbob -v -c encode/human/level_1.ini -O encode/human/tables/output encode/human/tables/input
-./bin/mrbob -v -c encode/human/level_2.ini -O encode/human/subtable/output encode/human/subtable/input
-./bin/mrbob -v -c encode/human/level_3.ini  -O encode/human/cell/output encode/human/cell/input
+./bin/mrbob -v -c encode/human/level_2.ini -O encode/human/secondary/output encode/human/secondary/input
+./bin/mrbob -v -c encode/human/level_2.ini -O encode/human/tables/output encode/human/tables/input
+./bin/mrbob -v -c encode/human/level_3.ini -O encode/human/subtable/output encode/human/subtable/input
+./bin/mrbob -v -c encode/human/level_4.ini  -O encode/human/cell/output encode/human/cell/input
