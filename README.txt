@@ -23,11 +23,11 @@ Dashboard Generation
 
 The ENCODE Human dashboard data is read from the following location:
 
-    encode/human/apache_export/hg19_RNA_dashboard_files.txt
+    output/hg19_RNA_dashboard_files.txt
 
 The following command renders the ENCODE Human dashboard with Pigeonhole:
 
-    ./bin/pigeonhole dashboard.txt -v -c encode/human/page/page.ini -O encode/human/apache_export encode/human/page/input
+    ./bin/pigeonhole dashboard.txt
 
 You can then open the resulting dashboard:
 
@@ -61,15 +61,7 @@ The development of the individual templates that are used for rendering a comple
 
 In an initial phase, Pigeonhole reads the dashboard.txt file that contains the exact command line calls for rendering the templates with mr.bob, and runs all of them internally for reusing them in the next phase.
 
-The command line contains a number of options after "dashboard.txt" that are reproduced here:
-
-    -v -c encode/human/page/page.ini -O encode/human/apache_export encode/human/page/input
-
-Pigeonhole internally calls mr.bob with these parameters, only this time the the top level template contained in 
-
-    encode/human/page
-
-renders lower level templates recursively through callback slots embedded in the templates, that were ignored in the initial phase. Here is an example of a simple slot that embeds the header template inside the page template:
+Pigeonhole automatically figures out what template is the top template and renders lower level templates recursively through callback slots embedded in the templates, that were ignored in the initial phase. Here is an example of a simple slot that embeds the header template inside the page template:
 
     <tal:block content="structure python:slot('header')" />
 
