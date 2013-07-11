@@ -9,7 +9,6 @@ docs: bin/sphinx-build
 
 build:	
 	virtualenv $(VTENV_OPTS) .
-	mkdir -p $(PIP_DOWNLOAD_CACHE)
 	virtualenv $(VTENV_OPTS) .
 	bin/pip install zope.pagetemplate
 	bin/pip install numpy
