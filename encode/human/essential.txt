@@ -1,7 +1,5 @@
 cell
-strain
-age
-sex
+rnaExtract
 localization
 lab
 dataType
