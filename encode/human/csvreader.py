@@ -45,7 +45,7 @@ def check(lines, essential):
     for line in lines:
         missing = False
         for attr in essential:
-            if not attr in line:
+            if not attr in line or line[attr] is None:
                 template = 'Skipping line %s: Attribute missing: %s'
                 LOGGER.error(template % (line['line_number'], attr))
                 missing = True
