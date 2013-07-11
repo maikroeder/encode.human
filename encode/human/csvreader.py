@@ -5,7 +5,7 @@ import logging
 import codecs
 logging.basicConfig()
 LOGGER = logging.getLogger()
-
+from pprint import pprint
 
 def unfold(lines, attrkeys):
     """
@@ -44,13 +44,16 @@ def check(lines, essential):
     checked_lines = []
     for line in lines:
         missing = False
+        if line['readType'] is None:
+            line['readType'] = 'NA'
         for attr in essential:
             if not attr in line or line[attr] is None:
-                if line['dataType'] == 'AffyExonArray':
+                if line['dataType'] in ['AffyExonArray', 'RnaChip']:
                     pass
                 else:
                     template = 'Skipping line %s: Attribute missing: %s'
                     LOGGER.error(template % (line['line_number'], attr))
+                    #pprint(line)
                 missing = True
         if not missing:
             replicate = line['replicate']
