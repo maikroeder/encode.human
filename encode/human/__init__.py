@@ -85,7 +85,7 @@ def get_frame(self):
 
 
     def to_tier(x):
-        tier = {'GM1287':'1',
+        tier = {'GM12878':'1',
                 'H1-hESC':'1',
                 'K562':'1',
                 'A549':'2',
