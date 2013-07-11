@@ -46,8 +46,11 @@ def check(lines, essential):
         missing = False
         for attr in essential:
             if not attr in line or line[attr] is None:
-                template = 'Skipping line %s: Attribute missing: %s'
-                LOGGER.error(template % (line['line_number'], attr))
+                if line['dataType'] == 'AffyExonArray':
+                    pass
+                else:
+                    template = 'Skipping line %s: Attribute missing: %s'
+                    LOGGER.error(template % (line['line_number'], attr))
                 missing = True
         if not missing:
             replicate = line['replicate']
