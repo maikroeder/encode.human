@@ -23,7 +23,7 @@ Dashboard Generation
 
 The ENCODE Human dashboard data is read from the following location:
 
-    output/hg19_RNA_dashboard_files.txt
+    ./encode/human/apache_export/hg19_RNA_dashboard_files.txt
 
 The following command renders the ENCODE Human dashboard with Pigeonhole:
 
