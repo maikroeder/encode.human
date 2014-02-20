@@ -33,6 +33,10 @@ You can then open the resulting dashboard:
 
     encode/human/apache_export/index.html
 
+A CSV file of the data used internally in Pandas is available here:
+
+    ./encode/human/apache_export/hg19_RNA_dashboard_files.csv
+
 Reconfiguration
 ===============
 
