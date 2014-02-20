@@ -133,4 +133,4 @@ def get_frame(self):
     frame['dateunrestricted'] = frame['dateUnrestricted']
 
     self.variables['frame'] = frame
-
+    frame.to_csv('encode/human/apache_export/hg19_RNA_dashboard_files.csv')
